@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC90E6AC18842ADF00627069 /* wineBottle.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6AB18842ADF00627069 /* wineBottle.png */; };
+		EC90E6AE18842EB600627069 /* bread.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6AD18842EB600627069 /* bread.png */; };
+		EC90E6B018842F6000627069 /* milkBottle.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6AF18842F6000627069 /* milkBottle.png */; };
+		EC90E6B218842FD300627069 /* cheese.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6B118842FD300627069 /* cheese.png */; };
+		EC90E6CC18843C9300627069 /* player0.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6C518843C9300627069 /* player0.png */; };
+		EC90E6CD18843C9300627069 /* player6.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6C618843C9300627069 /* player6.png */; };
+		EC90E6CE18843C9300627069 /* player5.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6C718843C9300627069 /* player5.png */; };
+		EC90E6CF18843C9300627069 /* player4.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6C818843C9300627069 /* player4.png */; };
+		EC90E6D018843C9300627069 /* player3.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6C918843C9300627069 /* player3.png */; };
+		EC90E6D118843C9300627069 /* player2.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6CA18843C9300627069 /* player2.png */; };
+		EC90E6D218843C9300627069 /* player1.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6CB18843C9300627069 /* player1.png */; };
+		EC90E6D51884444D00627069 /* io.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6D31884444D00627069 /* io.plist */; };
+		EC90E6D61884444D00627069 /* io.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6D41884444D00627069 /* io.png */; };
+		EC90E6D918844A9600627069 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6D818844A9600627069 /* Enemy.m */; };
 		ECAF6C91187D6AF600059711 /* woodbeer.png in Resources */ = {isa = PBXBuildFile; fileRef = ECAF6C8F187D6AF600059711 /* woodbeer.png */; };
 		ECAF6C92187D6AF600059711 /* woodbeer2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECAF6C90187D6AF600059711 /* woodbeer2x.png */; };
 		ECAF6C9F187D6C4F00059711 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAF6C9E187D6C4F00059711 /* libz.dylib */; };
@@ -156,6 +170,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC90E6AB18842ADF00627069 /* wineBottle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wineBottle.png; sourceTree = "<group>"; };
+		EC90E6AD18842EB600627069 /* bread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bread.png; sourceTree = "<group>"; };
+		EC90E6AF18842F6000627069 /* milkBottle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = milkBottle.png; sourceTree = "<group>"; };
+		EC90E6B118842FD300627069 /* cheese.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cheese.png; sourceTree = "<group>"; };
+		EC90E6C518843C9300627069 /* player0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player0.png; sourceTree = "<group>"; };
+		EC90E6C618843C9300627069 /* player6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player6.png; sourceTree = "<group>"; };
+		EC90E6C718843C9300627069 /* player5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player5.png; sourceTree = "<group>"; };
+		EC90E6C818843C9300627069 /* player4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player4.png; sourceTree = "<group>"; };
+		EC90E6C918843C9300627069 /* player3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player3.png; sourceTree = "<group>"; };
+		EC90E6CA18843C9300627069 /* player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player2.png; sourceTree = "<group>"; };
+		EC90E6CB18843C9300627069 /* player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player1.png; sourceTree = "<group>"; };
+		EC90E6D31884444D00627069 /* io.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = io.plist; sourceTree = "<group>"; };
+		EC90E6D41884444D00627069 /* io.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = io.png; sourceTree = "<group>"; };
+		EC90E6D718844A9600627069 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ../Enemy.h; sourceTree = "<group>"; };
+		EC90E6D818844A9600627069 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = ../Enemy.m; sourceTree = "<group>"; };
 		ECAF6C8F187D6AF600059711 /* woodbeer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodbeer.png; sourceTree = "<group>"; };
 		ECAF6C90187D6AF600059711 /* woodbeer2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodbeer2x.png; sourceTree = "<group>"; };
 		ECAF6C9E187D6C4F00059711 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -474,6 +503,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC90E6B31884363F00627069 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				EC90E6C518843C9300627069 /* player0.png */,
+				EC90E6C618843C9300627069 /* player6.png */,
+				EC90E6C718843C9300627069 /* player5.png */,
+				EC90E6C818843C9300627069 /* player4.png */,
+				EC90E6C918843C9300627069 /* player3.png */,
+				EC90E6CA18843C9300627069 /* player2.png */,
+				EC90E6CB18843C9300627069 /* player1.png */,
+			);
+			name = Enemy;
+			sourceTree = "<group>";
+		};
+		EC90E6DA18844C4500627069 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				EC90E6D718844A9600627069 /* Enemy.h */,
+				EC90E6D818844A9600627069 /* Enemy.m */,
+			);
+			name = Enemy;
+			sourceTree = "<group>";
+		};
 		ECAF6CB2187F111500059711 /* Menu Itens */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +533,10 @@
 				ECAF6C90187D6AF600059711 /* woodbeer2x.png */,
 				ECAF6CB0187EFB7D00059711 /* waterNormal.png */,
 				ECAF6CAE187EFB7A00059711 /* waterPure.png */,
+				EC90E6AB18842ADF00627069 /* wineBottle.png */,
+				EC90E6AD18842EB600627069 /* bread.png */,
+				EC90E6AF18842F6000627069 /* milkBottle.png */,
+				EC90E6B118842FD300627069 /* cheese.png */,
 			);
 			name = "Menu Itens";
 			sourceTree = "<group>";
@@ -570,6 +626,7 @@
 		ECD2C7AA187C684F008B3C11 /* RPGTavern */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6DA18844C4500627069 /* Enemy */,
 				ECAF6CB7187F115A00059711 /* AppDelegate */,
 				ECAF6CB6187F114700059711 /* IntroLayer */,
 				ECAF6CB5187F113900059711 /* GameLayer */,
@@ -585,6 +642,8 @@
 		ECD2C7AB187C684F008B3C11 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6D31884444D00627069 /* io.plist */,
+				EC90E6D41884444D00627069 /* io.png */,
 				ECD2C7AC187C684F008B3C11 /* Default.png */,
 				ECD2C7AE187C684F008B3C11 /* Default@2x.png */,
 				ECD2C7B0187C684F008B3C11 /* Default-568h@2x.png */,
@@ -957,6 +1016,7 @@
 		ECD2C937187C6852008B3C11 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6B31884363F00627069 /* Enemy */,
 				ECAF6CB4187F112800059711 /* Scene */,
 				ECAF6CB3187F111F00059711 /* HUD */,
 				ECAF6CB2187F111500059711 /* Menu Itens */,
@@ -1022,6 +1082,8 @@
 				ECAF6CA5187DCA4000059711 /* table.png in Resources */,
 				ECAF6CAD187EF81B00059711 /* backgroundTavern.png in Resources */,
 				ECD2C91B187C6852008B3C11 /* ChangeLog in Resources */,
+				EC90E6CD18843C9300627069 /* player6.png in Resources */,
+				EC90E6D218843C9300627069 /* player1.png in Resources */,
 				ECAF6C92187D6AF600059711 /* woodbeer2x.png in Resources */,
 				ECD2C7AF187C684F008B3C11 /* Default@2x.png in Resources */,
 				ECD2C7B9187C684F008B3C11 /* Icon-Small.png in Resources */,
@@ -1030,13 +1092,24 @@
 				ECD2C7AD187C684F008B3C11 /* Default.png in Resources */,
 				ECAF6CB1187EFB7D00059711 /* waterNormal.png in Resources */,
 				ECD2C7B7187C684F008B3C11 /* Icon-Small-50.png in Resources */,
+				EC90E6D61884444D00627069 /* io.png in Resources */,
+				EC90E6B218842FD300627069 /* cheese.png in Resources */,
+				EC90E6CF18843C9300627069 /* player4.png in Resources */,
 				ECAF6C91187D6AF600059711 /* woodbeer.png in Resources */,
 				ECD2C7C2187C6850008B3C11 /* iTunesArtwork in Resources */,
 				ECD2C7BB187C684F008B3C11 /* Icon-Small@2x.png in Resources */,
+				EC90E6B018842F6000627069 /* milkBottle.png in Resources */,
 				ECAF6CA1187D773400059711 /* swordIcon.png in Resources */,
+				EC90E6D51884444D00627069 /* io.plist in Resources */,
 				ECD2C7B3187C684F008B3C11 /* Default-Landscape~ipad.png in Resources */,
 				ECD2C94D187C6A0E008B3C11 /* healthbar.png in Resources */,
+				EC90E6AC18842ADF00627069 /* wineBottle.png in Resources */,
 				ECD2C7B1187C684F008B3C11 /* Default-568h@2x.png in Resources */,
+				EC90E6D018843C9300627069 /* player3.png in Resources */,
+				EC90E6AE18842EB600627069 /* bread.png in Resources */,
+				EC90E6CE18843C9300627069 /* player5.png in Resources */,
+				EC90E6CC18843C9300627069 /* player0.png in Resources */,
+				EC90E6D118843C9300627069 /* player2.png in Resources */,
 				ECD2C7BF187C6850008B3C11 /* Icon@2x.png in Resources */,
 				ECAF6CAF187EFB7A00059711 /* waterPure.png in Resources */,
 			);
@@ -1061,6 +1134,7 @@
 				ECD2C8E8187C6851008B3C11 /* TransformUtils.m in Sources */,
 				ECD2C835187C6850008B3C11 /* CCNode+Debug.m in Sources */,
 				ECD2C810187C6850008B3C11 /* ccFPSImages.m in Sources */,
+				EC90E6D918844A9600627069 /* Enemy.m in Sources */,
 				ECD2C896187C6851008B3C11 /* CCTMXXMLParser.m in Sources */,
 				ECD2C92D187C6852008B3C11 /* ray2.c in Sources */,
 				ECD2C8C8187C6851008B3C11 /* base64.c in Sources */,

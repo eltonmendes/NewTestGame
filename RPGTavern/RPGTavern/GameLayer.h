@@ -8,8 +8,9 @@
 
 #import "CCLayer.h"
 #import "cocos2d.h"
+#import "Enemy.h"
 
-@interface GameLayer : CCLayer 
+@interface GameLayer : CCLayer <EnemyDelegate>
 
 
 @end
