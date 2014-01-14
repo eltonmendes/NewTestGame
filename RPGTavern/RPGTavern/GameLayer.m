@@ -8,6 +8,10 @@
 
 #import "GameLayer.h"
 #import "CCProgressTimer.h"
+#import "MenuItems.h"
+#import "Item.h"
+#import "Coin.h"
+#import "MessageAlert.h"
 
 @interface GameLayer() {
     ccTime sceneTime;
@@ -16,8 +20,11 @@
 }
 @property (nonatomic,strong) CCSprite *healthBarController;
 @property (nonatomic,strong) CCSprite *healthBar;
-@property (nonatomic,strong) CCSprite *selectedSpriteToMove;
+@property (nonatomic,strong) Item *selectedItemToMove;
+@property (nonatomic,strong) Item *sellingItem;
 @property (nonatomic,strong) Enemy *enemy;
+@property (nonatomic,strong) CCLabelTTF *moneyLabel;
+@property (nonatomic) double tavernMoney;
 @property (nonatomic) NSUInteger selectedItemPosition;
 @property (nonatomic) NSUInteger numberOfClients;
 @property (nonatomic) CGPoint selectedSpriteOriginalLocation;
@@ -36,6 +43,13 @@
         
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         
+        
+        //Money Info
+        self.tavernMoney = 15.0;
+        self.moneyLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%.2fG",self.tavernMoney] fontName:@"Marker Felt" fontSize:10];
+        self.moneyLabel.position = CGPointMake(screenRect.size.height - 100, 260);
+        self.moneyLabel.color = ccc3(255, 255, 0);
+        [self addChild:self.moneyLabel];
         
         //Background
         CCSprite *background = [[CCSprite alloc]initWithFile:@"backgroundTavern.png"];
@@ -78,51 +92,24 @@
         NSMutableDictionary *filledItemsTable2 = [@{@"0":@"0",@"1":@"0",@"2":@"0"}mutableCopy];
         self.tableFullItems = [@{@"0":filledItemsTable1, @"1":filledItemsTable2} mutableCopy];
 
-        //Menu Itens
-        CCSprite *menuItem1 = [CCSprite spriteWithFile:@"woodbeer2x.png"];
-
-        [menuItem1 setTag:0];
-        menuItem1.position = ccp(screenRect.size.height/3, screenRect.size.width-60);
-        [self addChild:menuItem1];
-
-        CCSprite *menuItem2 = [CCSprite spriteWithFile:@"wineBottle.png"];
-
-        [menuItem2 setTag:1];
-        menuItem2.position = ccp(screenRect.size.height/3+30, screenRect.size.width-60);
-        [self addChild:menuItem2];
-
-        CCSprite *menuItem3 = [CCSprite spriteWithFile:@"bread.png"];
-
-        [menuItem3 setTag:2];
-        menuItem3.position = ccp(screenRect.size.height/3+60, screenRect.size.width-60);
-        [self addChild:menuItem3];
-
-        CCSprite *menuItem4 = [CCSprite spriteWithFile:@"cheese.png"];
-
-        [menuItem4 setTag:3];
-        menuItem4.position = ccp(screenRect.size.height/3+90, screenRect.size.width-60);
-        [self addChild:menuItem4];
-
-        CCSprite *menuItem5 = [CCSprite spriteWithFile:@"milkBottle.png"];
-
-        [menuItem5 setTag:4];
-        menuItem5.position = ccp(screenRect.size.height/3+120, screenRect.size.width-60);
-        [self addChild:menuItem5];
         
+        
+        //Menu Items
         if(self.menuItens == nil){
             self.menuItens = [[NSArray alloc]init];
             self.menuItensCoolDown = [[NSMutableArray alloc]init];
         }
-
-        self.menuItens = @[menuItem1,menuItem2,menuItem3,menuItem4,menuItem5];
-        self.menuItensCoolDown  = [@[ @NO,@NO,@NO,@NO,@NO ] mutableCopy];
-        //Damage icon
         
-        CCMenuItem *menuItem6 = [CCMenuItemImage
-                                 itemWithNormalImage:@"swordIcon.png" selectedImage:@"swordIconSelected.png"
-                                 target:self selector:@selector(damageHealth:)];
-        [menuItem6 setTag:5];
-        menuItem6.position = ccp(screenRect.size.height/3+60, screenRect.size.width-120);
+        MenuItems *items = [[MenuItems alloc]init];
+        //add to screen
+        for(Item *menuItems in items.menuItems){
+            [self addChild:menuItems];
+        }
+
+
+        self.menuItens = items.menuItems;
+        self.menuItensCoolDown  = [@[ @NO,@NO,@NO,@NO,@NO ] mutableCopy];
+        
         
         [self setTouchEnabled:YES];
 
@@ -132,6 +119,8 @@
         
         [self schedule:@selector(update:) interval:0];
         
+        
+        //Client 1
         [self addClient];
 
         
@@ -155,24 +144,26 @@
     [self.enemy runAction:moveAction];
     self.numberOfClients = 1;
 }
-- (void)menuButtonTapped:(CCSprite*)sprite{
+- (void)menuButtonTapped:(Item*)item{
     //Set if you are moving a item
-
-    sprite.Opacity = 100;
+    item.Opacity = 100;
  
     //move beer to table
 
-    CCSprite *spriteToMove = [CCSprite spriteWithTexture:sprite.texture];
-    [spriteToMove setPosition:sprite.position];
-    [self addChild:spriteToMove];
-    self.selectedSpriteToMove = spriteToMove;
-    self.selectedSpriteOriginalLocation = sprite.position;
-    self.selectedItemPosition = sprite.tag;
+    Item *itemToMove = [Item spriteWithTexture:item.texture];
+    itemToMove.price = item.price;
+    itemToMove.cost = item.cost;
+    [itemToMove setPosition:item.position];
+    [self addChild:itemToMove];
+    self.selectedItemToMove = itemToMove;
+    self.selectedSpriteOriginalLocation = item.position;
+    self.selectedItemPosition = item.tag;
+    
     //Comment
 }
 
-- (void)insertItem:(CCSprite *)sprite inTable:(CCSprite *) table withOrder:(NSString*) key{
-    //Insert Logic
+- (void)insertItem:(Item *)item inTable:(CCSprite *) table withOrder:(NSString*) key{
+    //Insert Logic + position
     NSUInteger positionToInsert = 0;
     
     NSMutableDictionary *positions =[self.tableFullPositions objectForKey:key];
@@ -185,25 +176,20 @@
         }
     }
     
-    [[self.tableFullItems objectForKey:key] setValue:self.selectedSpriteToMove forKey:[NSString stringWithFormat:@"%i",positionToInsert]];
+    [[self.tableFullItems objectForKey:key] setValue:self.selectedItemToMove forKey:[NSString stringWithFormat:@"%i",positionToInsert]];
     
-
-    [self applyCoolDown:sprite];
+    [self applyCoolDown:item];
     [self.menuItensCoolDown replaceObjectAtIndex:self.selectedItemPosition withObject:@YES];
-    NSLog(@"menu : %i is in cd",self.selectedItemPosition);
-    
-    
-    //Position schema
-    
+
     
     //Insert Animation Sequence
     
     CCAction *insertItemAction = [CCMoveTo actionWithDuration:0.3 position:CGPointMake((table.position.x-20) + (positionToInsert * 20),table.position.y+40)];
     
-    [self.selectedSpriteToMove runAction:insertItemAction];
+    [self.selectedItemToMove runAction:insertItemAction];
     
-    //Reset sprite into callback
-    //[self resetItem:self.selectedSpriteToMove inTable:table withPosition:positionToInsert];
+    //Remove Money From Tavern
+    [self schedule:@selector(showLessTavernMoney) interval:0.0005 repeat:item.cost-1 delay:0];
 
     
 }
@@ -218,13 +204,21 @@
     
     NSMutableDictionary * allTableItems = [self.tableFullItems objectForKey:key];
     
-    CCSprite *sprite = nil;
+    Item *item = nil;
     for(NSString *dicKey in allTableItems){
         if([[allTableItems objectForKey:dicKey] isKindOfClass:[CCSprite class]]){
             //Item Find
-            sprite =[allTableItems objectForKey:dicKey];
+            item =[allTableItems objectForKey:dicKey];
             [allTableItems setObject:@"" forKey:dicKey];
-            
+            //Show Coin Animation!
+            self.sellingItem = item;
+            int numberOfCoins = item.price / 20;
+            [self schedule:@selector(showCoinOfItem) interval:0.5 repeat:numberOfCoins delay:0];
+
+            //Show Money Count
+            [self schedule:@selector(showPlusTavernMoney) interval:0.05 repeat:item.price-1 delay:0];
+           
+
             break;
         }
         position +=1;
@@ -240,7 +234,7 @@
  
     //Remove Action
     CCCallBlock *removeSprite = [CCCallBlock actionWithBlock:^(void) {
-        [sprite removeFromParent];
+        [item removeFromParent];
         
         //Remove from array
         
@@ -251,40 +245,61 @@
 
     }];
 
-    [sprite runAction:[CCSequence actions:repeat,removeSprite, nil]];
+    [item runAction:[CCSequence actions:repeat,removeSprite, nil]];
 }
 
-- (void)applyCoolDown:(CCSprite *)sprite{
+
+- (void)showPlusTavernMoney{
+    self.tavernMoney +=1;
+    self.moneyLabel.string = [NSString stringWithFormat:@"%.2fG",self.tavernMoney];
+}
+- (void)showLessTavernMoney{
+    self.tavernMoney = self.tavernMoney - 1;
+    self.moneyLabel.string = [NSString stringWithFormat:@"%.2fG",self.tavernMoney];
+
+}
+- (void)showCoinOfItem{
     
-    CCProgressTimer *item = [CCProgressTimer progressWithSprite:sprite];
+    Coin *coin = [Coin spriteWithFile:@"coin.png"];
+    coin.position =self.sellingItem.position;
+    coin.target = self.moneyLabel;
+    [self addChild:coin];
+    [coin runActionCoin];
+
+   
+}
+
+- (void)applyCoolDown:(Item *)item{
     
-    item.position = sprite.position;
-    item.opacity = 150;
-    item.color = ccc3(255, 100, 100);
-    [self addChild:item];
+    CCProgressTimer *itemProgress = [CCProgressTimer progressWithSprite:item];
+    
+    itemProgress.position = item.position;
+    itemProgress.opacity = 150;
+    itemProgress.color = ccc3(255, 100, 100);
+    [self addChild:itemProgress];
     
     CCProgressFromTo *to1 = [CCProgressFromTo actionWithDuration:5.0f from:0 to:100];
     //Block to re enable at end
     CCCallBlock *reEnable = [CCCallBlock actionWithBlock:^(void) {
-        sprite.opacity = 255;
-        item.color = ccc3(255, 255, 255);
-        [item removeFromParent];
+        item.opacity = 255;
+        itemProgress.color = ccc3(255, 255, 255);
+        [itemProgress removeFromParent];
         //set cool down false
-        [self.menuItensCoolDown replaceObjectAtIndex:[self.menuItens indexOfObject:sprite] withObject:@NO];
+        [self.menuItensCoolDown replaceObjectAtIndex:[self.menuItens indexOfObject:item] withObject:@NO];
 
     }];
-    [item runAction:[CCSequence actions:to1,reEnable,nil]];
+    [itemProgress runAction:[CCSequence actions:to1,reEnable,nil]];
 }
 
 - (void) returnItemToOriginalPosition:(CCSprite *)sprite{
     CCAction *goToOriginalPositionAction = [CCMoveTo actionWithDuration:0.1 position:self.selectedSpriteOriginalLocation];
     CCCallBlock *removeAction = [CCCallBlock actionWithBlock:^(void) {
-        [self.selectedSpriteToMove removeFromParent];
+        [self.selectedItemToMove removeFromParent];
         sprite.opacity = 255;
     }];
     
     NSArray * arrayActions = @[goToOriginalPositionAction,removeAction];
-    [self.selectedSpriteToMove runAction:[CCSequence actionWithArray:arrayActions]];
+    [self.selectedItemToMove runAction:[CCSequence actionWithArray:arrayActions]];
 }
 - (IBAction)damageHealth:(id)sender{
     [self updateHealthBar];
@@ -292,6 +307,7 @@
 }
 
 - (void) update:(ccTime) time {
+    
     
     if(self.numberOfClients == 0 && self.enemy.isQuited){
         [self addClient];
@@ -337,27 +353,15 @@
 }
 
 - (void)showFeedAlertWithSucces:(BOOL) sucess{
-    NSString * warning = @"Cliente Saiu Bravo!";
+    NSString * warning = @"Aventureiro Saiu Bravo!";
     if(sucess){
-        warning = @"Cliente Saiu Satisfeito!";
+        warning = @"Aventureiro Saiu Satisfeito!";
     }
-    CCLabelTTF *label = [CCLabelTTF labelWithString:warning fontName:@"Marker Felt" fontSize:64];
-    
-    CGSize size = [[CCDirector sharedDirector] winSize];
-    
-    label.position =  ccp( size.width /2 , size.height/2 );
-    label.color = ccc3(255, 100, 100);
-
+    MessageAlert *label = [MessageAlert labelWithString:warning fontName:@"Marker Felt" fontSize:40];
+    [label showMessageAlert];
     [self addChild: label z:1];
     
-    CCFadeTo *fadeOut = [CCFadeTo actionWithDuration:4 opacity:0];
-    CCCallBlock *removeSprite = [CCCallBlock actionWithBlock:^(void) {
-        [label removeFromParent];
-    }];
-    NSArray * fadeOutAction = @[fadeOut,removeSprite];
-    [label runAction:[CCSequence actionWithArray:fadeOutAction]];
-    
-}
+    }
 
 - (NSUInteger) numberOfFilledPositionsAtKey:(NSString*) key{
     NSUInteger numberOfFilledPositions = 0;
@@ -383,19 +387,24 @@
     UITouch * touch = [[allTouches allObjects] objectAtIndex:0];
     CGPoint location = [touch locationInView:[touch view]];
     location = [[CCDirector sharedDirector] convertToGL:location];
-    
-    CCSprite *sprite = [CCSprite spriteWithFile:@"woodbeer2x.png"];
-    
-    self.selectedSpriteToMove =sprite;
 
-    for(CCSprite *sprite in self.menuItens){
-        if([sprite isKindOfClass:[CCSprite class]]){
-            if(CGRectContainsPoint(sprite.boundingBox,location)){
+
+    for(Item *item in self.menuItens){
+        if([item isKindOfClass:[Item class]]){
+            if(CGRectContainsPoint(item.boundingBox,location)){
                 //Not in cool down
-                int index =[self.menuItens indexOfObject:sprite] ;
+                int index =[self.menuItens indexOfObject:item] ;
                 if(![[self.menuItensCoolDown objectAtIndex:index] boolValue]){
-                    isMovingItem = true;
-                    [self menuButtonTapped:sprite];
+                    
+                    //check item cost
+                    if(self.tavernMoney >= item.cost){
+                        isMovingItem = true;
+                        [self menuButtonTapped:item];
+                    }
+                    else{
+                        item.color = ccc3(255, 100, 100);
+                        self.selectedItemPosition = item.tag;
+                    }
                 }
             }
         }
@@ -410,7 +419,7 @@
     location = [[CCDirector sharedDirector] convertToGL:location];
     
     if(isMovingItem){
-        self.selectedSpriteToMove.position = ccp(location.x, location.y);
+        self.selectedItemToMove.position = ccp(location.x, location.y);
         
         //Table1 Logic
         
@@ -428,38 +437,36 @@
                 [table setColor:ccc3(255, 255, 255)];
             }
         }
-       
     }
-
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     BOOL returnToOrigin = true;
-    CCSprite *sprite = [self.menuItens objectAtIndex:self.selectedItemPosition];
-
-    for(CCSprite *table in self.tables){
-        [table setColor:ccc3(255, 255, 255)];
-        NSString *key = [NSString stringWithFormat:@"%i",[self.tables indexOfObject:table]];
-        
-        if(isMovingItem){
+    Item *item = [self.menuItens objectAtIndex:self.selectedItemPosition];
+    item.color = ccc3(255, 255, 255);
+    if(isMovingItem){
+        for(CCSprite *table in self.tables){
+            [table setColor:ccc3(255, 255, 255)];
+            NSString *key = [NSString stringWithFormat:@"%i",[self.tables indexOfObject:table]];
+            
             //Apply cool Down // inserting item
-            if(CGRectContainsPoint(table.boundingBox,self.selectedSpriteToMove.position) && [self numberOfFilledPositionsAtKey:key] <=2){
+            if(CGRectContainsPoint(table.boundingBox,self.selectedItemToMove.position) && [self numberOfFilledPositionsAtKey:key] <=2){
                 
                 returnToOrigin = false;
                 //Make a animation to controll the inserted item
-                [self insertItem:sprite inTable:table withOrder:key];
+                [self insertItem:item inTable:table withOrder:key];
                 break;
             }
             else{
                 returnToOrigin = true;
             }
-  
+        }
+        if(returnToOrigin){
+            [self returnItemToOriginalPosition:item];
         }
 
     }
-    if(returnToOrigin){
-        [self returnItemToOriginalPosition:sprite];
-    }
+
     isMovingItem = false;
 
 }

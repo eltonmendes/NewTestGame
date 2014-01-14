@@ -21,6 +21,12 @@
 		EC90E6D51884444D00627069 /* io.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6D31884444D00627069 /* io.plist */; };
 		EC90E6D61884444D00627069 /* io.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6D41884444D00627069 /* io.png */; };
 		EC90E6D918844A9600627069 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6D818844A9600627069 /* Enemy.m */; };
+		EC90E6DD1885614200627069 /* MenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6DC1885614200627069 /* MenuItems.m */; };
+		EC90E6E11885679800627069 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6E01885679800627069 /* Item.m */; };
+		EC90E6E318858A7E00627069 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6E218858A7E00627069 /* coin.png */; };
+		EC90E6E61885992C00627069 /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6E51885992C00627069 /* Coin.m */; };
+		EC90E6E918859A5500627069 /* MessageAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = EC90E6E818859A5400627069 /* MessageAlert.m */; };
+		EC90E6ED18859D7A00627069 /* tavern.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC90E6EC18859D7A00627069 /* tavern.jpg */; };
 		ECAF6C91187D6AF600059711 /* woodbeer.png in Resources */ = {isa = PBXBuildFile; fileRef = ECAF6C8F187D6AF600059711 /* woodbeer.png */; };
 		ECAF6C92187D6AF600059711 /* woodbeer2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECAF6C90187D6AF600059711 /* woodbeer2x.png */; };
 		ECAF6C9F187D6C4F00059711 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAF6C9E187D6C4F00059711 /* libz.dylib */; };
@@ -185,6 +191,16 @@
 		EC90E6D41884444D00627069 /* io.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = io.png; sourceTree = "<group>"; };
 		EC90E6D718844A9600627069 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ../Enemy.h; sourceTree = "<group>"; };
 		EC90E6D818844A9600627069 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = ../Enemy.m; sourceTree = "<group>"; };
+		EC90E6DB1885614200627069 /* MenuItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuItems.h; path = ../MenuItems.h; sourceTree = "<group>"; };
+		EC90E6DC1885614200627069 /* MenuItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuItems.m; path = ../MenuItems.m; sourceTree = "<group>"; };
+		EC90E6DF1885679800627069 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = ../Item.h; sourceTree = "<group>"; };
+		EC90E6E01885679800627069 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = ../Item.m; sourceTree = "<group>"; };
+		EC90E6E218858A7E00627069 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
+		EC90E6E41885992C00627069 /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coin.h; path = ../Coin.h; sourceTree = "<group>"; };
+		EC90E6E51885992C00627069 /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coin.m; path = ../Coin.m; sourceTree = "<group>"; };
+		EC90E6E718859A5400627069 /* MessageAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageAlert.h; sourceTree = "<group>"; };
+		EC90E6E818859A5400627069 /* MessageAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageAlert.m; sourceTree = "<group>"; };
+		EC90E6EC18859D7A00627069 /* tavern.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tavern.jpg; sourceTree = "<group>"; };
 		ECAF6C8F187D6AF600059711 /* woodbeer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodbeer.png; sourceTree = "<group>"; };
 		ECAF6C90187D6AF600059711 /* woodbeer2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodbeer2x.png; sourceTree = "<group>"; };
 		ECAF6C9E187D6C4F00059711 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -526,6 +542,35 @@
 			name = Enemy;
 			sourceTree = "<group>";
 		};
+		EC90E6DE1885633000627069 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				EC90E6DF1885679800627069 /* Item.h */,
+				EC90E6E01885679800627069 /* Item.m */,
+				EC90E6DB1885614200627069 /* MenuItems.h */,
+				EC90E6DC1885614200627069 /* MenuItems.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		EC90E6EA18859A6100627069 /* Coin */ = {
+			isa = PBXGroup;
+			children = (
+				EC90E6E41885992C00627069 /* Coin.h */,
+				EC90E6E51885992C00627069 /* Coin.m */,
+			);
+			name = Coin;
+			sourceTree = "<group>";
+		};
+		EC90E6EB18859A6A00627069 /* MessageAlert */ = {
+			isa = PBXGroup;
+			children = (
+				EC90E6E718859A5400627069 /* MessageAlert.h */,
+				EC90E6E818859A5400627069 /* MessageAlert.m */,
+			);
+			name = MessageAlert;
+			sourceTree = "<group>";
+		};
 		ECAF6CB2187F111500059711 /* Menu Itens */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,6 +598,7 @@
 		ECAF6CB4187F112800059711 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6E218858A7E00627069 /* coin.png */,
 				ECAF6CAC187EF81B00059711 /* backgroundTavern.png */,
 				ECAF6CA4187DCA4000059711 /* table.png */,
 				ECAF6CA0187D773400059711 /* swordIcon.png */,
@@ -626,6 +672,9 @@
 		ECD2C7AA187C684F008B3C11 /* RPGTavern */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6EB18859A6A00627069 /* MessageAlert */,
+				EC90E6EA18859A6100627069 /* Coin */,
+				EC90E6DE1885633000627069 /* Menu */,
 				EC90E6DA18844C4500627069 /* Enemy */,
 				ECAF6CB7187F115A00059711 /* AppDelegate */,
 				ECAF6CB6187F114700059711 /* IntroLayer */,
@@ -1016,6 +1065,7 @@
 		ECD2C937187C6852008B3C11 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC90E6EC18859D7A00627069 /* tavern.jpg */,
 				EC90E6B31884363F00627069 /* Enemy */,
 				ECAF6CB4187F112800059711 /* Scene */,
 				ECAF6CB3187F111F00059711 /* HUD */,
@@ -1079,6 +1129,7 @@
 			files = (
 				ECD2C7BD187C6850008B3C11 /* Icon.png in Resources */,
 				ECAF6CA3187D83D400059711 /* swordIconSelected.png in Resources */,
+				EC90E6E318858A7E00627069 /* coin.png in Resources */,
 				ECAF6CA5187DCA4000059711 /* table.png in Resources */,
 				ECAF6CAD187EF81B00059711 /* backgroundTavern.png in Resources */,
 				ECD2C91B187C6852008B3C11 /* ChangeLog in Resources */,
@@ -1089,6 +1140,7 @@
 				ECD2C7B9187C684F008B3C11 /* Icon-Small.png in Resources */,
 				ECD2C951187C6E07008B3C11 /* healthController.png in Resources */,
 				ECD2C7B5187C684F008B3C11 /* Icon-72.png in Resources */,
+				EC90E6ED18859D7A00627069 /* tavern.jpg in Resources */,
 				ECD2C7AD187C684F008B3C11 /* Default.png in Resources */,
 				ECAF6CB1187EFB7D00059711 /* waterNormal.png in Resources */,
 				ECD2C7B7187C684F008B3C11 /* Icon-Small-50.png in Resources */,
@@ -1162,6 +1214,7 @@
 				ECD2C8FC187C6852008B3C11 /* CDXPropertyModifierAction.m in Sources */,
 				ECD2C8CC187C6851008B3C11 /* CCArray.m in Sources */,
 				ECD2C929187C6852008B3C11 /* plane.c in Sources */,
+				EC90E6E11885679800627069 /* Item.m in Sources */,
 				ECD2C8D5187C6851008B3C11 /* CCProfiling.m in Sources */,
 				ECD2C86C187C6851008B3C11 /* CCShaderCache.m in Sources */,
 				ECD2C872187C6851008B3C11 /* CCSprite.m in Sources */,
@@ -1225,8 +1278,11 @@
 				ECD2C8BF187C6851008B3C11 /* CCEventDispatcher.m in Sources */,
 				ECD2C875187C6851008B3C11 /* CCSpriteBatchNode.m in Sources */,
 				ECD2C7FE187C6850008B3C11 /* CCConfiguration.m in Sources */,
+				EC90E6E918859A5500627069 /* MessageAlert.m in Sources */,
+				EC90E6E61885992C00627069 /* Coin.m in Sources */,
 				ECD2C85A187C6851008B3C11 /* CCScheduler.m in Sources */,
 				ECD2C8AA187C6851008B3C11 /* CCDirectorIOS.m in Sources */,
+				EC90E6DD1885614200627069 /* MenuItems.m in Sources */,
 				ECD2C82C187C6850008B3C11 /* CCMenu.m in Sources */,
 				ECD2C935187C6852008B3C11 /* vec4.c in Sources */,
 				ECD2C7F7187C6850008B3C11 /* CCCamera.m in Sources */,

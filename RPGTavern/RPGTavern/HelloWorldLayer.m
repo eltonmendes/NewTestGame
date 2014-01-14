@@ -40,10 +40,17 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if( (self=[super init]) ) {
+        
+        //background
 		
-		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"RPG TAVERN " fontName:@"Marker Felt" fontSize:64];
+        
+        CCSprite *background = [CCSprite spriteWithFile:@"tavern.jpg"];
+        background.position = CGPointMake(270, 180);
+        [self addChild:background];
 
+		// create and initialize a Label
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"RPG TAVERN " fontName:@"Marker Felt" fontSize:74];
+        label.color = ccc3(230, 23, 233);
 		// ask director for the window size
 		CGSize size = [[CCDirector sharedDirector] winSize];
 	
